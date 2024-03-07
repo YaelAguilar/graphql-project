@@ -1,12 +1,15 @@
 const {GraphQLSchema, GraphQLObjectType} = require ('graphql');
-const { users, user, posts, post, comments, comment } = require('./queries');
+//const { users, user, posts, post, comments, comment } = require('./queries');
+const { users, user } = require('../controllers/userController');
+const { posts, post } = require('../controllers/postController');
+const { comments, comment } = require('../controllers/commentController');
 //const { register, login, createPost, updatePost, deletePost, addComment, updateComment, deleteComment } = require('./mutations');
 
 const QueryType = new GraphQLObjectType({
     name: 'QueryType',
     description: 'root query',
     fields: {
-        users, 
+        users,
         user,
         posts,
         post,
