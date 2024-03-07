@@ -1,5 +1,29 @@
 const { GraphQLList, GraphQLID, GraphQLNonNull } = require('graphql');
 const { CommentType } = require('../graphql/types');
+const { getComments, getCommentById } = require('../services/commentService');
+
+const comments = {
+  type: new GraphQLList(CommentType),
+  description: "Recuperada lista de comentarios",
+  resolve: () => {
+    return getComments();
+  },
+};
+
+const comment = {
+  type: CommentType,
+  description: "Recuperado un comentario",
+  args: {
+    id: { type: new GraphQLNonNull(GraphQLID) },
+  },
+  resolve: (_, { id }) => getCommentById(id),
+};
+
+module.exports = { comments, comment };
+
+
+/*const { GraphQLList, GraphQLID, GraphQLNonNull } = require('graphql');
+const { CommentType } = require('../graphql/types');
 const { Comment } = require('../models');
 
 const comments = {
@@ -17,4 +41,4 @@ const comments = {
     resolve: (_, { id }) => Comment.findById(id),
   };
 
-  module.exports = { comments, comment };      
+  module.exports = { comments, comment };      */
