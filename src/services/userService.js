@@ -1,10 +1,11 @@
 const { User } = require('../models');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('../util/bcrypt');
 const auth = require('../util/auth');
 
 const registerUser = async (username, email, password, displayName) => {
-  const user = new User({ username, email, password, displayName });
-  user.password = await bcrypt.encryptPassword(user.password);
+  const encryptedPassword = await bcrypt.encryptPassword(password);
+
+  const user = new User({ username, email, password: encryptedPassword, displayName });
   await user.save();
 
   const token = auth.createJWTToken({
