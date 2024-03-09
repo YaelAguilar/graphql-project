@@ -25,9 +25,9 @@ const MutationType = new GraphQLObjectType({
         createNewPost, //mutacion 1
         updatePost, //mutacion 2
         deletePost, //mutacion 3
-        addComment,
-        updateComment,
-        deleteComment,
+        addComment, //mutacion 4
+        updateComment, //mutacion 5
+        deleteComment, //mutacion 6
     },
 });
 
